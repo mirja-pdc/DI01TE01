@@ -15,7 +15,8 @@ export class HomePage {
 
   // ############################### REGION DATOS ###############################
 
-  // TODO - Inyectamos el controlador de toasts para mostrar mensajes al usuario
+  // DONE - Inyectamos el controlador de toasts para mostrar mensajes al usuario
+  private toastController = inject(ToastController);
 
   // Lista completa de restaurantes leída del JSON en tiempo de compilación
   restaurantes: Restaurante[] = restaurantesJSON as Restaurante[];
