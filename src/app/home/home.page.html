@@ -23,12 +23,19 @@
       <!-- Filtro de búsqueda por nombre -->
       <ion-col size="12" size-md="3">
         <ion-item>
-          <!-- TODO - Añadir un ion-input con:
+          <!-- DONE: Añadir un ion-input con:
                · label y placeholder
                · [value] enlazado al signal textoBusqueda()
                · [disabled] enlazado a !hayDatos() para desactivarlo si no hay datos
                · (ionInput) que actualice el signal textoBusqueda usando .set() con el valor del evento ($event.detail.value)
                  PISTA: usa ?? '' para evitar valores null o undefined -->
+          <ion-input
+            label="Buscar" 
+            placeholder="Nombre del restaurante..."
+            [value]="textoBusqueda()" 
+            [disabled]="!hayDatos()"
+            (ionInput)="textoBusqueda.set($event.detail.value ?? '')">
+          </ion-input>
         </ion-item>
       </ion-col>
 
