@@ -24,9 +24,11 @@ export class HomePage {
   // Signal principal con los restaurantes actualmente cargados (vacío hasta que el usuario pulsa "Cargar datos")
   restaurantesCargados = signal<Restaurante[]>([]);
 
-  // TODO - true cuando hay al menos un restaurante cargado.
+  // DONE - true cuando hay al menos un restaurante cargado.
   // Habrá que usar un computed para controlar si restaurantesCargados tiene elementos o no.
-  hayDatos = false;
+  // Se convierte hayDatos en un computed que devuelve true si restaurantesCargados 
+  // tiene elementos y false si está vacío. 
+  hayDatos = computed(() => this.restaurantesCargados().length > 0);
 
   // TODO - Carga la lista completa en el signal y muestra un toast de confirmación
   cargarDatos() {
