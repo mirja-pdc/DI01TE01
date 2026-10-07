@@ -12,9 +12,16 @@
 
 <ion-content class="ion-padding">
 
-  <!-- TODO - Mostrar un mensaje informativo cuando no hay datos cargados (hayDatos() devuelve false)
+  <!-- DONE - Mostrar un mensaje informativo cuando no hay datos cargados (hayDatos() devuelve false)
        PISTA: Usa @if para comprobar la condición y dentro coloca un ion-item con un ion-label
               explicando al usuario que pulse "Cargar datos" para empezar -->
+  @if (!hayDatos()) {
+    <ion-item>
+      <ion-label class="ion-text-wrap">
+        Pulsa Cargar Datos para ver los restaurantes disponibles. Una vez cargados, podrás filtrar por nombre, territorio y localidad.
+      </ion-label>
+    </ion-item>
+  }
 
   <!-- Filtros -->
   <ion-grid>
