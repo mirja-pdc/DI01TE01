@@ -26,16 +26,18 @@ export class HomePage {
 
   // DONE - true cuando hay al menos un restaurante cargado.
   // Habrá que usar un computed para controlar si restaurantesCargados tiene elementos o no.
-  // Se convierte hayDatos, que era false en la versión sin computed, en un computed que 
-  // devuelve true si restaurantesCargados tiene elementos y false si está vacío. 
+  // Se convierte hayDatos, que era false en la versión de la plantilla (sin computed), 
+  // en un computed que devuelve true si restaurantesCargados tiene elementos y false si está vacío. 
   hayDatos = computed(() => this.restaurantesCargados().length > 0);
 
-  // TODO - Carga la lista completa en el signal y muestra un toast de confirmación
+  // DONE - Carga la lista completa en el signal y muestra un toast de confirmación
+  // Usa .set() para meter la lista completa en el signal y avisa al usuario
   cargarDatos() {
     // Cargamos los datos en el signal mediante set()
-    
+    this.restaurantesCargados.set(this.restaurantes);
+  
     // Mostramos un toast de confirmación con el número de restaurantes cargados
-    
+    this.mostrarToast(`${this.restaurantes.length} restaurantes cargados`, 'success');
   }
 
   // TODO -Muestra un toast con el mensaje y color indicados
