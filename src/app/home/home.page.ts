@@ -78,16 +78,23 @@ export class HomePage {
   onTerritorioChange(value: string) {
 
     // Actualizamos el territorio seleccionado
+    // Cuando el usuario cambie de territorio en el desplegable,
+    // actualizamos el Signal del territorio seleccionado
     onTerritorioChange(value: string) {
-      // ?? '' se lee como "Usa el valor de value, pero si por alguna razón es vacío, 
-      // null o undefined (por ejemplo, si el usuario desmarca la opción), 
-      // guarda en su lugar un texto vacío ''".
+      // "value ?? ''" se lee como: "Usa el valor de value, pero si por alguna razón es
+      // vacío, null o undefined (por ejemplo, si el usuario desmarca la opción), 
+      // guarda en su lugar un texto vacío, ''".
       this.territorioSeleccionado.set(value ?? '');
     }
 
-    // Filtra las localidades ya seleccionadas, quedándose solo con las que siguen siendo válidas para el nuevo territorio.
-    // PISTA: Podemos usar filter() para quedarnos solo con las localidades que están en la lista de localidades filtradas por territorio y includes() para comprobar si una localidad está en esa lista.
-    // Por ejemplo, si el usuario tenía seleccionadas las localidades ["Bilbao", "Donostia"] y cambia el territorio a "Araba", la localidad "Bilbao" ya no es válida y debe eliminarse de la lista de localidades seleccionadas.
+    // Filtra las localidades ya seleccionadas, quedándose solo con 
+    // las que siguen siendo válidas para el nuevo territorio.
+    // PISTA: Podemos usar filter() para quedarnos solo con las localidades 
+    // que están en la lista de localidades filtradas por territorio y includes() 
+    // para comprobar si una localidad está en esa lista.
+    // Por ejemplo, si el usuario tenía seleccionadas las localidades ["Bilbao", "Donostia"] 
+    // y cambia el territorio a "Araba", la localidad "Bilbao" ya no es válida 
+    // y debe eliminarse de la lista de localidades seleccionadas.
 
     // Actualizamos las localidades seleccionadas con las nuevas localidades válidas
 
