@@ -59,12 +59,19 @@ export class HomePage {
 
   territorioSeleccionado = signal('');
 
-  // TODO - Lista de territorios únicos disponibles, ordenada alfabéticamente
+  // DONE - Lista de territorios únicos disponibles, ordenada alfabéticamente
   // Se obtiene a partir de los restaurantes cargados y se usa un computed para recalcularla cuando cambian los datos.
   // PISTA: Mediante map() podemos crear un array de string[] con cada territorio de cada restaurante. Ejemplo: ["Bizkaia", "Gipuzkoa", "Bizkaia", "Araba", "Gipuzkoa"]
   //        Luego mediante Set() podemos eliminar duplicados y finalmente mediante Array.from() podemos volver a convertirlo en un array para devolverlo ordenado alfabéticamente mediante sort().
+  // Lista de territorios únicos disponibles, ordenada alfabéticamente
   territoriosFiltrados = computed(() => {
+    // 1. Extraemos los territorios (filtrando los que tengan valor válido y aplicando trim
+    const listaTerritorios = this.restaurantesCargados()
+      .filter(r => !!r.territory?.trim())
+      .map(r => r.territory!.trim());
 
+    // 2. Eliminamos duplicados con Set y convertimos a Array ordenado alfabéticamente
+    return Array.from(new Set(listaTerritorios)).sort();
   });
 
   // TODO - Actualiza el territorio seleccionado y elimina las localidades que ya no pertenecen a él
