@@ -57,6 +57,8 @@ export class HomePage {
 
   // ############################### REGION TERRITORIOS ###############################
 
+  // La variable territorioSeleccionado se crea como un signal de tipo string, 
+  // inicializado con un string vacío.
   territorioSeleccionado = signal('');
 
   // DONE - Lista de territorios únicos disponibles, ordenada alfabéticamente

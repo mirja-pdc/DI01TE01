@@ -57,17 +57,32 @@
                · [disabled] enlazado a !hayDatos()
                · (ionChange) que llame a onTerritorioChange() pasándole $event.detail.value
                Dentro del ion-select, recorre con @for la lista territoriosFiltrados() y genera
-               un ion-select-option por cada territorio (usa track t) -->
-                <ion-select
-                  label="Territorio", labelPlacement="start", placeholder="Todos"
-                  [value]="territorioSeleccionado()"
-                  [disabled]="!hayDatos()"
-                  (ionChange)="onTerritorioChange($event.detail.value)">
-      
-                  @for (t of territoriosFiltrados(); track t) {
-                      <ion-select-option [value]="t">{{ t }}</ion-select-option>
-                  }
-                </ion-select>
+               un ion-select-option por cada territorio (usa track t) 
+              -->
+            <ion-select
+                label="Territorio" 
+                labelPlacement="start" 
+                placeholder="Todos"
+                [value]="territorioSeleccionado()"
+                [disabled]="!hayDatos()"
+                (ionChange)="onTerritorioChange($event.detail.value)">
+                <!-- Cuando el usuario cambia de opción en el <ion-select>, 
+                  Ionic emite un evento de tipo CustomEvent. Ese objeto se compone de tres niveles:
+                    $event: El objeto completo del evento emitido por Ionic.
+                    .detail: La propiedad donde se guarda la información específica de la acción.
+                    .value: El dato concreto elegido por el usuario 
+                            (por ejemplo, 'Bizkaia', 'Gipuzkoa' o 'Araba').
+                  Ejemplo de flujo de (ionChange)="onTerritorioChange($event.detail.value)":
+                  El usuario hace clic en "Gipuzkoa" en el selector.
+                  Ionic genera el evento $event, guardando dentro en $event.detail.value la cadena 'Gipuzkoa'.
+                  Angular pasa esa cadena al método onTerritorioChange('Gipuzkoa') en el TypeScript.
+                  El TypeScript ejecuta this.territorioSeleccionado.set('Gipuzkoa') 
+                  (usando Signals las variables no se modifican con = sino con el método .set(). -->
+
+                @for (t of territoriosFiltrados(); track t) {
+                    <ion-select-option [value]="t">{{ t }}</ion-select-option>
+                }
+            </ion-select>
         </ion-item>
       </ion-col>
 
