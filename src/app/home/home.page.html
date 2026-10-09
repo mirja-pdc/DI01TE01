@@ -77,7 +77,8 @@
                   Ionic genera el evento $event, guardando dentro en $event.detail.value la cadena 'Gipuzkoa'.
                   Angular pasa esa cadena al método onTerritorioChange('Gipuzkoa') en el TypeScript.
                   El TypeScript ejecuta this.territorioSeleccionado.set('Gipuzkoa') 
-                  (usando Signals las variables no se modifican con = sino con el método .set(). -->
+                  (porque territorioSeleccionado es una variable de tipo Signal,
+                  y no se modifica con = sino con el método .set()). -->
 
                 @for (t of territoriosFiltrados(); track t) {
                     <ion-select-option [value]="t">{{ t }}</ion-select-option>
