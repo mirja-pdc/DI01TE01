@@ -149,6 +149,8 @@ export class HomePage {
   // Actualiza el Signal localidadesSeleccionadas con el ionChange del html, 
   // que devuelve un array de strings con las localidades seleccionadas por el usuario.
   onLocalidadesChange(value: string[]) {
+    // ?? se lee: "Toma el valor de la izquierda (value), pero si es null o undefined, 
+    // usa lo de la derecha ([])".
     this.localidadesSeleccionadas.set(value ?? []);
   }
 
