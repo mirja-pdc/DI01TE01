@@ -145,7 +145,11 @@ export class HomePage {
   // ############################### REGION RESULTADOS ###############################
 
   // TODO - Lista filtrada de restaurantes según todos los filtros activos
+  // TEMPORAL: POR AHORA DEVOLVEMOS TODOS LOS RESTAURANTES CARGADOS, SIN FILTRAR
   restaurantesFiltrados = computed(() => {
+    return this.restaurantesCargados();
+  });
+  //restaurantesFiltrados = computed(() => {
 
     // Obtenemos la lista de restaurantes cargados, siendo lista un array de objetos Restaurante.
 
@@ -162,7 +166,7 @@ export class HomePage {
     
     //Devuelve la lista filtrada de restaurantes
  
-  });
+  //});
 
   // ############################### REGION AUXILIARES ###############################
 
