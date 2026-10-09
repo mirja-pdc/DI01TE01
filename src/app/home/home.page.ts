@@ -53,7 +53,27 @@ export class HomePage {
 
   // ############################### REGION FILTROS (estado general) ###############################
 
+  // Signal con el texto introducido en el input de búsqueda por nombre
   textoBusqueda = signal('');
+
+  // DONE - Indica si hay algún filtro de búsqueda activo
+  // hayFiltrosActivos() viene de una PISTA en el contador en el documento HTML
+  // Cuando la lista filtrada está vacía (restaurantesFiltrados().length === 0 && hayFiltrosActivos() es true)
+  // se muestra el mensaje de que ningún restaurante coincide con los filtros.
+  hayFiltrosActivos = computed(() => {
+    return !!this.textoBusqueda().trim() || 
+           !!this.territorioSeleccionado() || 
+           this.localidadesSeleccionadas().length > 0;
+  });
+
+  // DONE - Resetea todos los filtros a su estado inicial (vacíos)
+  // Se llama desde el HTML en el bloque @else de la tabla cuando no hay resultados:
+  // <a (click)="limpiarTodosFiltros()">Pulsa aquí para limpiar los filtros.</a>
+  limpiarTodosFiltros() {
+    this.textoBusqueda.set('');
+    this.territorioSeleccionado.set('');
+    this.localidadesSeleccionadas.set([]);
+  }
 
   // ############################### REGION TERRITORIOS ###############################
 
