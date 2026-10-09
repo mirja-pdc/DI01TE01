@@ -93,7 +93,7 @@
         <!-- NOTA: Cuando hay muchas localidades seleccionadas el texto se recorta con "...",
              por eso se usa [title] para mostrar un tooltip con todas ellas al pasar el ratón -->
         <ion-item>
-          <!-- TODO - Añadir un ion-select con:
+          <!-- DONE - Añadir un ion-select con:
                · label="Localidad", labelPlacement="start" y placeholder="Todas"
                · multiple="true" para permitir selección múltiple
                · cancelText="Cancelar" y okText="Aceptar" para los botones del diálogo
@@ -125,20 +125,23 @@
     </ion-row>
   </ion-grid>
 
-  <!-- TODO - Mostrar un contador de resultados solo cuando hayDatos() sea true
+  <!-- DONE - Mostrar un contador de resultados solo cuando hayDatos() sea true
        El mensaje debe indicar cuántos restaurantes se están mostrando sobre el total:
        "Mostrando X de Y restaurantes"
        · X → restaurantesFiltrados().length
        · Y → restaurantesCargados().length
        PISTA: Añade dentro un @if adicional para mostrar el texto "· Prueba a cambiar los filtros"
               cuando no hay resultados (length === 0) Y además hay filtros activos (hayFiltrosActivos()) -->
-
-  <ion-item>
-    <ion-label>
-
-    </ion-label>
-  </ion-item>  
-
+  @if (hayDatos()) {
+    <ion-item>
+      <ion-label>
+          Mostrando {{ restaurantesFiltrados().length }} de {{ restaurantesCargados().length }} restaurantes
+          @if (restaurantesFiltrados().length === 0 && hayFiltrosActivos()) {
+            <span> · Prueba a cambiar los filtros</span>
+          }
+      </ion-label>
+    </ion-item>  
+  }
               
   <!-- DONE - Mostrar la tabla de restaurantes cuando restaurantesFiltrados().length > 0
        La tabla debe tener las columnas: Nombre, Localidad, Dirección, Teléfono, Territorio, Web, Estrellas Michelin, Soles Repsol
