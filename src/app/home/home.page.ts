@@ -168,15 +168,18 @@ export class HomePage {
  
   //});
 
+
   // ############################### REGION AUXILIARES ###############################
 
-  // Devuelve el número de estrellas Michelin (0 si no tiene o el valor no es numérico)
+  // Devuelve el número de estrellas Michelin (0 si no tiene o el valor no es numérico).
+  // El || 0? se lee como: "Si lo que está a la izquierda (Number(...)) es falso o inválido, 
+  // usa lo de la derecha (0)".
   estrellasMichelin(r: Restaurante): number {
-    return r.michelinStars ? Number(r.michelinStars) : 0;
+    return r.michelinStars ? Number(r.michelinStars) || 0 : 0;
   }
 
-  // Devuelve el número de soles Repsol (0 si no tiene o el valor no es numérico)
+  // Devuelve el número de soles Repsol (0 si no tiene o el valor no es numérico).
   repsolSoles(r: Restaurante): number {
-    return r.repsolSoles ? Number(r.repsolSoles) : 0;
+    return r.repsolSoles ? Number(r.repsolSoles) || 0 : 0;
   }
 }
