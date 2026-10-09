@@ -137,7 +137,7 @@ export class HomePage {
     const localities = lista.filter(r => !!r.locality?.trim()).map(r => r.locality!.trim());
 
     //Finalmente mediante Set() eliminamos duplicados y Array.from() lo convertimos de nuevo en un array, que ordenamos alfabéticamente mediante sort(). 
-    
+    return Array.from(new Set(localities)).sort();
   });
 
   // TODO - Actualiza las localidades seleccionadas con los valores del evento
