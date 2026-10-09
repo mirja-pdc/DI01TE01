@@ -83,10 +83,10 @@ export class HomePage {
     // Cuando el usuario cambie de territorio en el desplegable,
     // actualizamos el Signal del territorio seleccionado
     
-      // "value ?? ''" se lee como: "Usa el valor de value, pero si por alguna razón es
-      // vacío, null o undefined (por ejemplo, si el usuario desmarca la opción), 
-      // guarda en su lugar un texto vacío, ''".
-      this.territorioSeleccionado.set(value ?? '');
+    // "value ?? ''" se lee como: "Usa el valor de value, pero si por alguna razón es
+    // vacío, null o undefined (por ejemplo, si el usuario desmarca la opción), 
+    // guarda en su lugar un texto vacío, ''".
+    this.territorioSeleccionado.set(value ?? '');
     
 
     // Filtra las localidades ya seleccionadas, quedándose solo con 
@@ -103,7 +103,7 @@ export class HomePage {
 
     // Actualizamos las localidades seleccionadas con las nuevas localidades válidas
     // Actualizamos la variable localidadesSeleccionadas, que es un Signal 
-    // que guarda un array de cadenas de texto (de localidades seleccionadas)
+    // que guarda un array de Strings con las localidades seleccionadas por el usuario.
     this.localidadesSeleccionadas.set(localidadesValidas);
   }
 
