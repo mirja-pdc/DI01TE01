@@ -51,13 +51,23 @@
         <!-- NOTA: Usamos el label del propio ion-select (no un ion-label externo) para que al hacer
              click en cualquier parte del ion-item se abra el selector, mejorando la usabilidad -->
         <ion-item>
-          <!-- TODO - Añadir un ion-select con:
+          <!-- DONE - Añadir un ion-select con:
                · label="Territorio", labelPlacement="start" y placeholder="Todos"
                · [value] enlazado a territorioSeleccionado()
                · [disabled] enlazado a !hayDatos()
                · (ionChange) que llame a onTerritorioChange() pasándole $event.detail.value
                Dentro del ion-select, recorre con @for la lista territoriosFiltrados() y genera
                un ion-select-option por cada territorio (usa track t) -->
+                <ion-select
+                  label="Territorio", labelPlacement="start", placeholder="Todos"
+                  [value]="territorioSeleccionado()"
+                  [disabled]="!hayDatos()"
+                  (ionChange)="onTerritorioChange($event.detail.value)">
+      
+                  @for (t of territoriosFiltrados(); track t) {
+                      <ion-select-option [value]="t">{{ t }}</ion-select-option>
+                  }
+                </ion-select>
         </ion-item>
       </ion-col>
 
