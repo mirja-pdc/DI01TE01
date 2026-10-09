@@ -76,7 +76,7 @@ export class HomePage {
     return Array.from(new Set(listaTerritorios)).sort();
   });
 
-  // TODO - Actualiza el territorio seleccionado y elimina las localidades que ya no pertenecen a él
+  // DONE - Actualiza el territorio seleccionado y elimina las localidades que ya no pertenecen a él
   onTerritorioChange(value: string) {
 
     // Actualizamos el territorio seleccionado
@@ -145,9 +145,9 @@ export class HomePage {
     return Array.from(new Set(localities)).sort();
   });
 
-  // TODO - Actualiza las localidades seleccionadas con los valores del evento
+  // DONE - Actualiza las localidades seleccionadas con los valores del evento
   onLocalidadesChange(value: string[]) {
-    
+    this.localidadesSeleccionadas.set(value ?? []);
   }
 
   // ############################### REGION RESULTADOS ###############################
