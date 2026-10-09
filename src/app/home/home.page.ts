@@ -146,6 +146,8 @@ export class HomePage {
   });
 
   // DONE - Actualiza las localidades seleccionadas con los valores del evento
+  // Actualiza el Signal localidadesSeleccionadas con el ionChange del html, 
+  // que devuelve un array de strings con las localidades seleccionadas por el usuario.
   onLocalidadesChange(value: string[]) {
     this.localidadesSeleccionadas.set(value ?? []);
   }
