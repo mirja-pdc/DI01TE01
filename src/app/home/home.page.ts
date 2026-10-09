@@ -172,7 +172,7 @@ export class HomePage {
   }
 
   // Devuelve el número de soles Repsol (0 si no tiene o el valor no es numérico)
-  repsolSoles() {
-    
+  repsolSoles(r: Restaurante): number {
+    return r.repsolSoles ? Number(r.repsolSoles) : 0;
   }
 }
