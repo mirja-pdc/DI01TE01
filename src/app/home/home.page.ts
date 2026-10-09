@@ -167,8 +167,8 @@ export class HomePage {
   // ############################### REGION AUXILIARES ###############################
 
   // Devuelve el número de estrellas Michelin (0 si no tiene o el valor no es numérico)
-  estrellasMichelin() {
-    
+  estrellasMichelin(r: Restaurante): number {
+    return r.michelinStars ? Number(r.michelinStars) : 0;
   }
 
   // Devuelve el número de soles Repsol (0 si no tiene o el valor no es numérico)
