@@ -104,6 +104,22 @@
                · (ionChange) que llame a onLocalidadesChange() pasándole $event.detail.value
                Dentro del ion-select, recorre con @for la lista localidadesFiltradasPorTerritorio()
                y genera un ion-select-option por cada localidad (usa track loc) -->
+              <ion-select
+                  label="Localidad"
+                  labelPlacement="start"
+                  placeholder="Todas"
+                  [multiple]="true"
+                  cancelText="Cancelar"
+                  okText="Aceptar"
+                  [value]="localidadesSeleccionadas()"
+                  [title]="localidadesSeleccionadas().length > 0 ? localidadesSeleccionadas().join(', ') : 'Todas'"
+                  [disabled]="!hayDatos()"
+                  (ionChange)="onLocalidadesChange($event.detail.value)">
+
+                  @for (loc of localidadesFiltradasPorTerritorio(); track loc) {
+                    <ion-select-option [value]="loc">{{ loc }}</ion-select-option>
+                }
+              </ion-select>
         </ion-item>
       </ion-col>
     </ion-row>
