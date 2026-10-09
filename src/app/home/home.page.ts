@@ -156,29 +156,50 @@ export class HomePage {
 
   // ############################### REGION RESULTADOS ###############################
 
-  // TODO - Lista filtrada de restaurantes según todos los filtros activos
-  // TEMPORAL: POR AHORA DEVOLVEMOS TODOS LOS RESTAURANTES CARGADOS, SIN FILTRAR
+  // DONE - Lista filtrada de restaurantes según todos los filtros activos
   restaurantesFiltrados = computed(() => {
-    return this.restaurantesCargados();
-  });
-  //restaurantesFiltrados = computed(() => {
 
     // Obtenemos la lista de restaurantes cargados, siendo lista un array de objetos Restaurante.
+    // let lista: Restaurante[] = this.restaurantesCargados(); sería redudante 
+    // porque repite el tipo, que TypeScript ya conoce.
+    let lista = this.restaurantesCargados();
 
     // Filtramos la lista de restaurantes según el texto de búsqueda, el territorio seleccionado y las localidades seleccionadas.
     // PISTA: Habrá que hacer uso de icludes() para comprobar si el texto de búsqueda está en el nombre del restaurante, si el territorio del restaurante coincide con el territorio seleccionado 
     //        y si la localidad del restaurante está en la lista de localidades seleccionadas.
     //        Habrá que hacer uso de filter() para filtrar la lista de restaurantes según cada uno de los filtros activos.
 
-    //textoBusqueda
+    // textoBusqueda
+    // Normalizamos el texto de búsqueda (minúsculas y sin espacios)
+    const texto = this.textoBusqueda().toLowerCase().trim();
+
+    // territorioSeleccionado
+    // Normalizamos el territorio seleccionado (minúsculas y sin espacios)
+    const territorio = this.territorioSeleccionado().toLowerCase().trim();
     
-    //territorioSeleccionado
+    // localidadesSeleccionadas
+    // Obtenemos el array de localidades seleccionadas
+    const localidades = this.localidadesSeleccionadas();
     
-    //localidadesSeleccionadas
-    
-    //Devuelve la lista filtrada de restaurantes
- 
-  //});
+    // Devuelve la lista filtrada de restaurantes
+    // Filtro 1: Texto de búsqueda (comprueba si está en el nombre del restaurante)
+    if (texto) {
+      lista = lista.filter(r => r.documentName?.toLowerCase().includes(texto));
+    }
+
+    // Filtro 2: Territorio seleccionado
+    if (territorio) {
+      lista = lista.filter(r => r.territory?.toLowerCase().trim() === territorio);
+    }
+
+    // Filtro 3: Localidades seleccionadas (solo si hay al menos una seleccionada)
+    if (localidades.length > 0) {
+      lista = lista.filter(r => r.locality && localidades.includes(r.locality.trim()));
+    }
+
+    // Devuelve la lista con todos los filtros aplicados
+    return lista;
+  });
 
 
   // ############################### REGION AUXILIARES ###############################
