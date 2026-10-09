@@ -124,7 +124,7 @@
   </ion-item>  
 
               
-  <!-- TODO - Mostrar la tabla de restaurantes cuando restaurantesFiltrados().length > 0
+  <!-- DONE - Mostrar la tabla de restaurantes cuando restaurantesFiltrados().length > 0
        La tabla debe tener las columnas: Nombre, Localidad, Dirección, Teléfono, Territorio, Web, Estrellas Michelin, Soles Repsol
        Usa @for para recorrer restaurantesFiltrados() y generar una fila <tr> por restaurante (track r.documentName)
        · Columna Web: usa @if(r.web) para mostrar un <a> con [href]="r.web", target="_blank" y [title]="r.web"
@@ -147,7 +147,22 @@
         </tr>
       </thead>
       <tbody>
-
+        @for (r of restaurantesFiltrados(); track r.documentName) {
+          <tr>
+            <td>{{ r.documentName }}</td>
+            <td>{{ r.locality }}</td>
+            <td>{{ r.address }}</td>
+            <td>{{ r.phone }}</td>
+            <td>{{ r.territory }}</td>
+            <td>
+              @if (r.web) {
+                <a [href]="r.web" target="_blank" [title]="r.web">Web</a>
+              }
+            </td>
+            <td>{{ estrellasMichelin(r) > 0 ? estrellasMichelin(r) : '-' }}</td>
+            <td>{{ repsolSoles(r) > 0 ? repsolSoles(r) : '-' }}</td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
