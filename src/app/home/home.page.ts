@@ -112,7 +112,7 @@ export class HomePage {
   localidadesFiltradasPorTerritorio = computed(() => {
     // Obtenemos la lista de restaurantes cargados, siendo lista un array de objetos Restaurante.
     let lista: Restaurante[] = this.restaurantesCargados();
-    
+
     // Para el territorio la pasaremos a minúsculas y eliminaremos espacios al principio y al final para evitar problemas de coincidencia, mediante toLowerCase() y trim().
     // Obtenemos el territorio en minúsculas y sin espacios
     const territorio = this.territorioSeleccionado().toLowerCase().trim();
@@ -120,7 +120,7 @@ export class HomePage {
     // Si hay un territorio seleccionado, filtramos la lista de restaurantes por él
     if (territorio) {
       // Filtramos la lista de restaurantes para quedarnos solo con los que tienen el territorio seleccionado, usando filter() y comparando el territorio del restaurante con el territorio seleccionado.
-
+      lista = lista.filter(r => r.territory?.toLowerCase().trim() === territorio);
     }
 
     // RESUELTO: Obtenemos la lista de localidades únicas de los restaurantes restantes, eliminando duplicados y ordenando alfabéticamente.
