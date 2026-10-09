@@ -131,45 +131,57 @@
        · Columna Estrellas Michelin: llama a estrellasMichelin(r); si es > 0 muestra el número, si no muestra '-'
          PISTA: puedes usar el operador ternario directamente en la interpolación {{ ... ? ... : '-' }}
        · Columna Soles Repsol: igual que Estrellas Michelin pero con repsolSoles(r) -->
-
-  <div class="table-wrapper">
-    <table class="restaurantes-table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Localidad</th>
-          <th>Dirección</th>
-          <th>Teléfono</th>
-          <th>Territorio</th>
-          <th>Web</th>
-          <th>Estrellas Michelin</th>
-          <th>Soles Repsol</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (r of restaurantesFiltrados(); track r.documentName) {
+  @if (restaurantesFiltrados().length > 0) {
+    <div class="table-wrapper">
+      <table class="restaurantes-table">
+        <thead>
           <tr>
-            <td>{{ r.documentName }}</td>
-            <td>{{ r.locality }}</td>
-            <td>{{ r.address }}</td>
-            <td>{{ r.phone }}</td>
-            <td>{{ r.territory }}</td>
-            <td>
+            <th>Nombre</th>
+            <th>Localidad</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Territorio</th>
+            <th>Web</th>
+            <th>Estrellas Michelin</th>
+            <th>Soles Repsol</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of restaurantesFiltrados(); track r.documentName) {
+            <tr>
+              <td>{{ r.documentName }}</td>
+              <td>{{ r.locality }}</td>
+              <td>{{ r.address }}</td>
+              <td>{{ r.phone }}</td>
+              <td>{{ r.territory }}</td>
+              <td>
               @if (r.web) {
                 <a [href]="r.web" target="_blank" [title]="r.web">Web</a>
               }
-            </td>
-            <td>{{ estrellasMichelin(r) > 0 ? estrellasMichelin(r) : '-' }}</td>
-            <td>{{ repsolSoles(r) > 0 ? repsolSoles(r) : '-' }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-  <!-- TODO - Añadir un bloque @else al @if anterior (cuando no hay resultados filtrados)
+              </td>
+              <td>{{ estrellasMichelin(r) > 0 ? estrellasMichelin(r) : '-' }}</td>
+              <td>{{ repsolSoles(r) > 0 ? repsolSoles(r) : '-' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  <!-- DONE - Añadir un bloque @else al @if anterior (cuando no hay resultados filtrados)
        Dentro, usa otro @if (hayDatos()) para mostrar un mensaje de aviso (color="warning")
        indicando que ningún restaurante coincide con los filtros.
        Incluye un elemento clicable que llame a limpiarTodosFiltros() para resetear los filtros -->
+  } @else {
+  @if (hayDatos()) {
+    <ion-item color="warning">
+      <ion-label class="ion-text-wrap">
+        No se ha encontrado ningún restaurante que coincida con los filtros seleccionados.
+        <a (click)="limpiarTodosFiltros()" style="cursor: pointer; text-decoration: underline;">
+          Pulsa aquí para limpiar los filtros.
+        </a>
+      </ion-label>
+    </ion-item>
+  }
+}
   <ion-item>
     <ion-label>
       
