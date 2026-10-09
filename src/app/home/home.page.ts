@@ -82,12 +82,12 @@ export class HomePage {
     // Actualizamos el territorio seleccionado
     // Cuando el usuario cambie de territorio en el desplegable,
     // actualizamos el Signal del territorio seleccionado
-    onTerritorioChange(value: string) {
+    
       // "value ?? ''" se lee como: "Usa el valor de value, pero si por alguna razón es
       // vacío, null o undefined (por ejemplo, si el usuario desmarca la opción), 
       // guarda en su lugar un texto vacío, ''".
       this.territorioSeleccionado.set(value ?? '');
-    }
+    
 
     // Filtra las localidades ya seleccionadas, quedándose solo con 
     // las que siguen siendo válidas para el nuevo territorio.
