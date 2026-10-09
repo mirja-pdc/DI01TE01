@@ -97,16 +97,21 @@ export class HomePage {
     // Por ejemplo, si el usuario tenía seleccionadas las localidades ["Bilbao", "Donostia"] 
     // y cambia el territorio a "Araba", la localidad "Bilbao" ya no es válida 
     // y debe eliminarse de la lista de localidades seleccionadas.
+    const localidadesValidas = this.localidadesSeleccionadas().filter(loc =>
+      this.localidadesFiltradasPorTerritorio().includes(loc)
+    );
 
     // Actualizamos las localidades seleccionadas con las nuevas localidades válidas
-
+    // Actualizamos la variable localidadesSeleccionadas, que es un Signal 
+    // que guarda un array de cadenas de texto (de localidades seleccionadas)
+    this.localidadesSeleccionadas.set(localidadesValidas);
   }
 
   // ############################### REGION LOCALIDADES ###############################
 
   localidadesSeleccionadas = signal<string[]>([]);
 
-  // TODO - Lista de localidades únicas del territorio seleccionado (o de todos si no hay territorio), ordenada alfabéticamente
+  // DONE - Lista de localidades únicas del territorio seleccionado (o de todos si no hay territorio), ordenada alfabéticamente
   // Se obtiene a partir de los restaurantes cargados y se usa un computed para recalcularla cuando cambian los datos o el territorio seleccionado.
   // PISTA: Haremos uso de la lista de restaurantes, si hay un territorio seleccionado filtraremos por él y luego obtendremos las localidades únicas de los restaurantes restantes, eliminando duplicados y ordenando alfabéticamente.
   localidadesFiltradasPorTerritorio = computed(() => {
