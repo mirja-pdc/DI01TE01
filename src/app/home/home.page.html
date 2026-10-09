@@ -171,17 +171,17 @@
        indicando que ningún restaurante coincide con los filtros.
        Incluye un elemento clicable que llame a limpiarTodosFiltros() para resetear los filtros -->
   } @else {
-  @if (hayDatos()) {
-    <ion-item color="warning">
-      <ion-label class="ion-text-wrap">
-        No se ha encontrado ningún restaurante que coincida con los filtros seleccionados.
-        <a (click)="limpiarTodosFiltros()" style="cursor: pointer; text-decoration: underline;">
-          Pulsa aquí para limpiar los filtros.
-        </a>
-      </ion-label>
-    </ion-item>
+    @if (hayDatos()) {
+      <ion-item color="warning">
+        <ion-label class="ion-text-wrap">
+          No se ha encontrado ningún restaurante que coincida con los filtros seleccionados.
+          <a (click)="limpiarTodosFiltros()" style="cursor: pointer; text-decoration: underline;">
+            Pulsa aquí para limpiar los filtros.
+          </a>
+        </ion-label>
+      </ion-item>
+    }
   }
-}
   <ion-item>
     <ion-label>
       
